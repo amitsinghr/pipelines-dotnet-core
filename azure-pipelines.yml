@@ -43,11 +43,11 @@ stages:
     jobs:
     - job: Deploy
       steps:
-      - task: ManualIntervention@8
-        inputs:
-          instructions: 'Deploying to QA'
-          emailRecipients: 'amitsingh.rajput@atos.net'
-          onTimeout: 'resume'  
+      # - task: ManualIntervention@8
+      #   inputs:
+      #     instructions: 'Deploying to QA'
+      #     emailRecipients: 'amitsingh.rajput@atos.net'
+      #     onTimeout: 'resume'  
       - script: echo Deploying the code!
 
     
