@@ -175,7 +175,7 @@ variables:
     value: ''
   
 jobs:
-  - job: A
+  - job: Runifavariableisnull
     steps:
     - script: echo testNull is blank
     condition: eq('${{ variables.testNull }}', '')
