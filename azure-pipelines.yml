@@ -194,22 +194,37 @@ trigger:
 
   # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=example%2Cparameter-schema
   # Job templates: You can define a set of jobs in one file and use it multiple times in other files.
-jobs:
-  - template: lib/jobs/buildjob.yml  # Template reference
-    parameters:
-      name: macOS
-      pool:
-        vmImage: 'macOS-10.14'
+# jobs:
+#   - template: lib/buildjob.yml  # Template reference
+#     parameters:
+#       name: macOS
+#       pool:
+#         vmImage: 'macOS-10.14'
   
-  - template: lib/jobs/buildjob.yml  # Template reference
-    parameters:
-      name: Linux
-      pool:
-        vmImage: 'ubuntu-16.04'
+#   - template: lib/buildjob.yml  # Template reference
+#     parameters:
+#       name: Linux
+#       pool:
+#         vmImage: 'ubuntu-16.04'
   
-  - template: lib/jobs/buildjob.yml  # Template reference
+#   - template: lib/buildjob.yml  # Template reference
+#     parameters:
+#       name: Windows
+#       pool:
+#         vmImage: 'vs2017-win2016'
+#       sign: true  # Extra step on Windows only
+
+# File: azure-pipelines.yml
+
+# Stage templates In this example, a stage is repeated twice for two different testing regimes. The stage itself is specified only once.
+
+stages:
+  - template: lib/stagetemplate.yml  # Template reference
     parameters:
-      name: Windows
-      pool:
-        vmImage: 'vs2017-win2016'
-      sign: true  # Extra step on Windows only
+      name: Mini
+      testFile: tests/miniSuite.js
+  
+  - template: lib/stagetemplate.yml  # Template reference
+    parameters:
+      name: Full
+      testFile: tests/fullSuite.js
