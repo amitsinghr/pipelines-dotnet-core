@@ -7,11 +7,11 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
+#pool:
+# vmImage: ubuntu-latest
 
-variables:
-  buildConfiguration: 'Release'
+#variables:
+#  buildConfiguration: 'Release'
 
 #steps:
 #- script: dotnet build --configuration $(buildConfiguration)
