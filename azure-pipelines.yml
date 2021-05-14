@@ -5,8 +5,9 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 variables:
-  name: environment
-  value: dev
+  environment: dev
+  configuration: Debug
+  platform: x64
 
 trigger:
  - master
@@ -25,13 +26,13 @@ trigger:
 
 stages:
   - stage: Build
-    displayName: Building in $(environment)
+    displayName: $(environment) Build
     jobs:
     - job: BuildJob
       displayName: Build Job
       steps:
       - script: echo Building!
-  - stage: Test
+  - stage: $(environment) Test
     jobs:
     - job: TestOnWindows
       displayName: Test on Windows
