@@ -28,7 +28,7 @@ stages:
     - job: BuildJob
       displayName: Build Job
       steps:
-      - script: echo Building!      
+      - script:  dotnet build --configuration $(buildConfiguration)     
   - stage: Test
     jobs:
     - job: TestOnWindows
@@ -53,6 +53,16 @@ stages:
               amitsingh.rajput@atos.net            
             instructions: 'Please validate the build configuration and resume'
             onTimeout: 'resume'
+    - job: Publish
+      displayName: Publish Artifact
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: Publish
+          inputs:
+            command: publish
+            publishWebProjects: True
+            arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+            zipAfterPublish: True
     - job: DeploytoDev
       displayName: Deploying to dev
       steps:
