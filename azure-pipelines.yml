@@ -47,7 +47,7 @@ stages:
       steps:
         - task: ManualValidation@0
           displayName: Waiting for Approval          
-          timeoutInMinutes: 50 # task times out in 1 day
+          timeoutInMinutes: 1 # task times out in 1 day
           inputs:
             notifyUsers: |
               amitsingh.rajput@atos.net            
