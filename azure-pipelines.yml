@@ -28,13 +28,7 @@ stages:
     - job: BuildJob
       displayName: Build Job
       steps:
-#      - script: echo Building!
-      - task: ManualIntervention@8
-        inputs:
-          instructions: 'Test'
-          emailRecipients: 'amitsingh.rajput@atos.net'
-          onTimeout: 'resume'
-      
+      - script: echo Building!      
   - stage: Test
     jobs:
     - job: TestOnWindows
@@ -49,7 +43,13 @@ stages:
     jobs:
     - job: Deploy
       steps:
+      - task: ManualIntervention@8
+        inputs:
+          instructions: 'Deploying to QA'
+          emailRecipients: 'amitsingh.rajput@atos.net'
+          onTimeout: 'resume'  
       - script: echo Deploying the code!
+
     
   
   # This example runs two stages in parallel. For brevity, the jobs and steps are omitted.
