@@ -43,11 +43,13 @@ stages:
     jobs:
     - job: Deploy
       steps:
-      # - task: ManualIntervention@8
-      #   inputs:
-      #     instructions: 'Deploying to QA'
-      #     emailRecipients: 'amitsingh.rajput@atos.net'
-      #     onTimeout: 'resume'  
+      - task: ManualValidation@0
+        timeoutInMinutes: 50 # task times out in 1 day
+        inputs:
+          notifyUsers: |
+            amitsingh.rajput@atos.net            
+          instructions: 'Please validate the build configuration and resume'
+          onTimeout: 'resume'
       - script: echo Deploying the code!
 
     
