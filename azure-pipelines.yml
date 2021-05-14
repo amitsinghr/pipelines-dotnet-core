@@ -43,6 +43,14 @@ trigger:
 stages:
   - stage: BuildWin
     displayName: Build for Windows
+    jobs:
+    - job: BuildJob
+      steps:
+      - script: echo Building for Windows!
   - stage: BuildMac
     displayName: Build for Mac
-    # dependsOn: [BuildWin] # by specifying an empty array, this stage doesn't depend on the stage before it
+    jobs:
+      - job: BuildJob
+        steps:
+        - script: echo Building for Windows!
+    dependsOn: [BuildWin] # by specifying an empty array, this stage doesn't depend on the stage before it
