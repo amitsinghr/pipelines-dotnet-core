@@ -114,22 +114,41 @@ trigger:
 
 
 #############CONDITIONS
-# Example to run a job based upon the status of running a previous job:
+# # Example to run a job based upon the status of running a previous job:
+# jobs:
+#   - job: A
+#     steps:
+#     - script: exit 1
+  
+#   - job: B
+#     dependsOn: A
+#     condition: failed()
+#     steps:
+#     - script: echo this will run when A fails
+  
+#   - job: C
+#     dependsOn:
+#     - A
+#     - B
+#     condition: succeeded('B')
+#     steps:
+#     - script: echo this will run when B runs and succeeds
+
+# The matrix strategy enables a job to be dispatched multiple times, with different variable sets. 
+# The maxParallel tag restricts the amount of parallelism. The following job will be dispatched three times
+# with the values of Location and Browser set as specified. However, only two jobs will run at the same time.
+
 jobs:
-  - job: A
-    steps:
-    - script: exit 1
-  
-  - job: B
-    dependsOn: A
-    condition: failed()
-    steps:
-    - script: echo this will run when A fails
-  
-  - job: C
-    dependsOn:
-    - A
-    - B
-    condition: succeeded('B')
-    steps:
-    - script: echo this will run when B runs and succeeds
+  - job: Test
+    strategy:
+      maxParallel: 2
+      matrix: 
+        US_IE:
+          Location: US
+          Browser: IE
+        US_Chrome:
+          Location: US
+          Browser: Chrome
+        Europe_Chrome:
+          Location: Europe
+          Browser: Chrome
