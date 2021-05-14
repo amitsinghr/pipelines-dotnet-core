@@ -4,19 +4,16 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-variables:
-  environment: dev
-  configuration: Debug
-  platform: x64
-
 trigger:
  - master
 
 #pool:
 # vmImage: ubuntu-latest
 
-#variables:
-#  buildConfiguration: 'Release'
+variables:
+ buildConfiguration: 'Release'
+ environment: dev 
+ platform: x64
 
 #steps:
 #- script: dotnet build --configuration $(buildConfiguration)
