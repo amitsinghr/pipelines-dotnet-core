@@ -4,6 +4,10 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+variables:
+  name: environment
+  value: dev
+
 trigger:
  - master
 
@@ -19,25 +23,30 @@ trigger:
 
 # This example runs three stages, one after another. The middle stage runs two jobs in parallel. 
 
-# stages:
-#   - stage: Build
-#     jobs:
-#     - job: BuildJob
-#       steps:
-#       - script: echo Building!
-#   - stage: Test
-#     jobs:
-#     - job: TestOnWindows
-#       steps:
-#       - script: echo Testing on Windows!
-#     - job: TestOnLinux
-#       steps:
-#       - script: echo Testing on Linux!
-#   - stage: Deploy
-#     jobs:
-#     - job: Deploy
-#       steps:
-#       - script: echo Deploying the code!
+stages:
+  - stage: Build
+    displayName: Building in ${{ variables.environment }}
+    jobs:
+    - job: BuildJob
+      displayName: Build Job
+      steps:
+      - script: echo Building!
+  - stage: Test
+    jobs:
+    - job: TestOnWindows
+      displayName: Test on Windows
+      steps:
+      - script: echo Testing on Windows!
+    - job: TestOnLinux
+      displayName: Test on Linux  
+      steps:
+      - script: echo Testing on Linux! 
+  - stage: Deploy
+    jobs:
+    - job: Deploy
+      steps:
+      - script: echo Deploying the code!
+    
   
   # This example runs two stages in parallel. For brevity, the jobs and steps are omitted.
   # stages:
@@ -218,13 +227,13 @@ trigger:
 
 # Stage templates In this example, a stage is repeated twice for two different testing regimes. The stage itself is specified only once.
 
-stages:
-  - template: lib/stagetemplate.yml  # Template reference
-    parameters:
-      name: Mini
-      testFile: tests/miniSuite.js
+# stages:
+#   - template: lib/stagetemplate.yml  # Template reference
+#     parameters:
+#       name: Mini
+#       testFile: tests/miniSuite.js
   
-  - template: lib/stagetemplate.yml  # Template reference
-    parameters:
-      name: Full
-      testFile: tests/fullSuite.js
+#   - template: lib/stagetemplate.yml  # Template reference
+#     parameters:
+#       name: Full
+#       testFile: tests/fullSuite.js
