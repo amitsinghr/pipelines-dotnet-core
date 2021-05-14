@@ -29,11 +29,6 @@ stages:
       displayName: Build Job
       steps:
       - script: echo Building!
-      - task: ManualIntervention@8
-        inputs:
-          instructions: 'The build is being deployed in QA env. Waiting for your approval. Please approve'
-          emailRecipients: 'amitsingh.rajput@atos.net'
-          onTimeout: 'resume'
   - stage: Test
     jobs:
     - job: TestOnWindows
