@@ -26,13 +26,13 @@ trigger:
 
 stages:
   - stage: Build
-    displayName: $(environment) Build
+    displayName: Build
     jobs:
     - job: BuildJob
       displayName: Build Job
       steps:
       - script: echo Building!
-  - stage: $(environment) Test
+  - stage: Test
     jobs:
     - job: TestOnWindows
       displayName: Test on Windows
