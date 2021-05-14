@@ -53,7 +53,11 @@ stages:
               amitsingh.rajput@atos.net            
             instructions: 'Please validate the build configuration and resume'
             onTimeout: 'resume'
+    - job: DeploytoDev
+      displayName: Deploying to dev
+      steps:
         - script: echo Deploying the code!
+      dependsOn: Approval  
     
   # This example runs two stages in parallel. For brevity, the jobs and steps are omitted.
   # stages:
