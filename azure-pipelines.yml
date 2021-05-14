@@ -19,25 +19,25 @@ trigger:
 
 # This example runs three stages, one after another. The middle stage runs two jobs in parallel. 
 
-stages:
-  - stage: Build
-    jobs:
-    - job: BuildJob
-      steps:
-      - script: echo Building!
-  - stage: Test
-    jobs:
-    - job: TestOnWindows
-      steps:
-      - script: echo Testing on Windows!
-    - job: TestOnLinux
-      steps:
-      - script: echo Testing on Linux!
-  - stage: Deploy
-    jobs:
-    - job: Deploy
-      steps:
-      - script: echo Deploying the code!
+# stages:
+#   - stage: Build
+#     jobs:
+#     - job: BuildJob
+#       steps:
+#       - script: echo Building!
+#   - stage: Test
+#     jobs:
+#     - job: TestOnWindows
+#       steps:
+#       - script: echo Testing on Windows!
+#     - job: TestOnLinux
+#       steps:
+#       - script: echo Testing on Linux!
+#   - stage: Deploy
+#     jobs:
+#     - job: Deploy
+#       steps:
+#       - script: echo Deploying the code!
   
   # This example runs two stages in parallel. For brevity, the jobs and steps are omitted.
   # stages:
@@ -191,3 +191,25 @@ stages:
   # steps:
   # - script: echo I did a thing
   #   condition: and(succeeded(), eq('${{ parameters.doThing }}', true))
+
+  # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=example%2Cparameter-schema
+  # Job templates: You can define a set of jobs in one file and use it multiple times in other files.
+jobs:
+  - template: lib/jobs/buildjob.yml  # Template reference
+    parameters:
+      name: macOS
+      pool:
+        vmImage: 'macOS-10.14'
+  
+  - template: lib/jobs/buildjob.yml  # Template reference
+    parameters:
+      name: Linux
+      pool:
+        vmImage: 'ubuntu-16.04'
+  
+  - template: lib/jobs/buildjob.yml  # Template reference
+    parameters:
+      name: Windows
+      pool:
+        vmImage: 'vs2017-win2016'
+      sign: true  # Extra step on Windows only
