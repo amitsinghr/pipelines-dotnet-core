@@ -42,15 +42,16 @@ stages:
   - stage: Deploy
     jobs:
     - job: Deploy
+      displayName: Deploy on dev
       steps:
-      - task: ManualValidation@0
-        displayName: Waiting for Approval
-        timeoutInMinutes: 50 # task times out in 1 day
-        inputs:
-          notifyUsers: |
-            amitsingh.rajput@atos.net            
-          instructions: 'Please validate the build configuration and resume'
-          onTimeout: 'resume'
+      # - task: ManualValidation@0
+      #   displayName: Waiting for Approval
+      #   timeoutInMinutes: 50 # task times out in 1 day
+      #   inputs:
+      #     notifyUsers: |
+      #       amitsingh.rajput@atos.net            
+      #     instructions: 'Please validate the build configuration and resume'
+      #     onTimeout: 'resume'
       - script: echo Deploying the code!
 
     
