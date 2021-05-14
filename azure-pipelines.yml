@@ -56,11 +56,29 @@ trigger:
 #    dependsOn: [] # by specifying an empty array, this stage doesn't depend on the stage before it
 
 #Example jobs that build sequentially:
+# jobs:
+#   - job: Debug
+#     steps:
+#     - script: echo hello from the Debug build
+#   - job: Release
+#     dependsOn: Debug
+#     steps:
+#     - script: echo hello from the Release build
+
+# Example jobs that build in parallel (no dependencies):
 jobs:
-  - job: Debug
+  - job: Windows
+    pool:
+      vmImage: 'vs2017-win2016'
     steps:
-    - script: echo hello from the Debug build
-  - job: Release
-    dependsOn: Debug
+    - script: echo hello from Windows
+  - job: macOS
+    pool:
+      vmImage: 'macOS-10.14'
     steps:
-    - script: echo hello from the Release build
+    - script: echo hello from macOS
+  - job: Linux
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+    - script: echo hello from Linux  
