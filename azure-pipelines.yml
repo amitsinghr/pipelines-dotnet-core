@@ -8,5 +8,5 @@ trigger:
 - master
 
 steps:
-  - template: /pipeline/main.yaml
+  - template: /pipeline/main.yml
 
