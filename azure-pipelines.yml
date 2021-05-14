@@ -28,7 +28,13 @@ stages:
     - job: BuildJob
       displayName: Build Job
       steps:
-      - script: echo Building!
+#      - script: echo Building!
+      - task: ManualIntervention@8
+        inputs:
+          instructions: 'Test'
+          emailRecipients: 'amitsingh.rajput@atos.net'
+          onTimeout: 'resume'
+      
   - stage: Test
     jobs:
     - job: TestOnWindows
