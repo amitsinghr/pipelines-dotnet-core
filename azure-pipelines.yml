@@ -41,21 +41,19 @@ stages:
       - script: echo Testing on Linux! 
   - stage: Deploy
     jobs:
-    - job: Deploy
-      displayName: Deploy on dev
+    - job: Approval
+      displayName: Waiting for Approval
       steps:
-      # - task: ManualValidation@0
-      #   displayName: Waiting for Approval
-      #   timeoutInMinutes: 50 # task times out in 1 day
-      #   inputs:
-      #     notifyUsers: |
-      #       amitsingh.rajput@atos.net            
-      #     instructions: 'Please validate the build configuration and resume'
-      #     onTimeout: 'resume'
-      - script: echo Deploying the code!
-
+        - task: ManualValidation@0
+          displayName: Waiting for Approval
+          timeoutInMinutes: 50 # task times out in 1 day
+          inputs:
+            notifyUsers: |
+              amitsingh.rajput@atos.net            
+            instructions: 'Please validate the build configuration and resume'
+            onTimeout: 'resume'
+        - script: echo Deploying the code!
     
-  
   # This example runs two stages in parallel. For brevity, the jobs and steps are omitted.
   # stages:
   #   - stage: BuildWin
