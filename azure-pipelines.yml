@@ -25,7 +25,7 @@ trigger:
 
 stages:
   - stage: Build
-    displayName: Building in ${{ variables.environment }}
+    displayName: Building in $(environment)
     jobs:
     - job: BuildJob
       displayName: Build Job
