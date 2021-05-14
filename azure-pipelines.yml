@@ -44,6 +44,7 @@ stages:
     - job: Deploy
       steps:
       - task: ManualValidation@0
+        displayName: Waiting for Approval
         timeoutInMinutes: 50 # task times out in 1 day
         inputs:
           notifyUsers: |
