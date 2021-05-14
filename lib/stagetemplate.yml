@@ -16,4 +16,4 @@ stages:
       vmImage: macos-10.14
     steps:
     - script: echo 'npm install'
-    - script: echo 'npm test -- --file=${{ parameters.testFile }}''
+    - script: echo 'npm test -- --file=${{ parameters.testFile }}'
