@@ -56,17 +56,15 @@ stages:
     - job: Publish
       displayName: Publish Artifact
       steps:
-        - task: DotNetCoreCLI@2
-          displayName: Publish
+        - task: PublishBuildArtifacts@1
           inputs:
-            command: publish
-            publishWebProjects: True
-            arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-            zipAfterPublish: True
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'drop'
+            publishLocation: 'Container'
     - job: DeploytoDev
       displayName: Deploying to dev
       steps:
-        - script: echo Deploying the code!
+        - script: echo Deploying the code from $(Build.ArtifactStagingDirectory)!
       dependsOn: Approval  
     
   # This example runs two stages in parallel. For brevity, the jobs and steps are omitted.
