@@ -169,13 +169,23 @@ trigger:
 # - bash: echo Input macro = $(my.dotted.var). Env var = $MY_DOTTED_VAR
 # - powershell: Write-Host "Input macro = $(my var with spaces). Env var = $env:MY_VAR_WITH_SPACES"
 
-#Run if a variable is null
-variables:
-  - name: testNull
-    value: ''
+# #Run if a variable is null
+# variables:
+#   - name: testNull
+#     value: ''
   
-jobs:
-  - job: Runifavariableisnull
-    steps:
-    - script: echo testNull is blank
-    condition: eq('${{ variables.testNull }}', '')
+# jobs:
+#   - job: Runifavariableisnull
+#     steps:
+#     - script: echo testNull is blank
+#     condition: eq('${{ variables.testNull }}', '')
+
+# Use a template parameter as part of a condition
+parameters:
+  - name: doThing
+    default: true
+    type: boolean
+  
+steps:
+- script: echo I did a thing
+  condition: and(succeeded(), eq('${{ parameters.doThing }}', true))
