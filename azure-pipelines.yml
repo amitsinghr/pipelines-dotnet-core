@@ -17,6 +17,7 @@ variables:
 #- script: dotnet build --configuration $(buildConfiguration)
 #  displayName: 'dotnet build $(buildConfiguration)'
 
+#This example runs three stages, one after another. The middle stage runs two jobs in parallel.
 stages:
 - stage: Build
   jobs:
