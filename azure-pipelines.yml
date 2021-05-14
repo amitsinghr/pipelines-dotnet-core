@@ -53,4 +53,4 @@ stages:
       - job: BuildJobMac
         steps:
         - script: echo Building for Mac!
-    dependsOn: [BuildWin] # by specifying an empty array, this stage doesn't depend on the stage before it
+    dependsOn: [] # by specifying an empty array, this stage doesn't depend on the stage before it
