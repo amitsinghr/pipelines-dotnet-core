@@ -1,7 +1,7 @@
 parameters:
 - name: buildConfiguration
   type: string
-  value: ''
+  default: 'Release'
 
 
 # Build Stage
