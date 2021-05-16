@@ -51,6 +51,14 @@ stages:
         - template: lib/tasks/testonlinux-tsk.yml
       # - script: echo Testing on Linux! 
       # dependsOn: Build
+    - job: Publish
+      displayName: Publish Artifact
+      steps:
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'drop'
+            publishLocation: 'Container'  
   - stage: Deploy
     jobs:
     - job: Approval
@@ -65,14 +73,6 @@ stages:
               amitsingh.rajput@atos.net            
             instructions: 'Please validate the build configuration to resume quickly'
             onTimeout: 'resume'
-    - job: Publish
-      displayName: Publish Artifact
-      steps:
-        - task: PublishBuildArtifacts@1
-          inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: 'drop'
-            publishLocation: 'Container'
     - deployment: deploytoDev
       displayName: Deploy to Dev
       environment: $(environment)
