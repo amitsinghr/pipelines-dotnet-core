@@ -1,7 +1,7 @@
 parameters:
 - name: buildConfiguration
   type: string
-  default: 'Release'
+  default: 'Debug'
 
 
 # Build Stage
@@ -12,4 +12,4 @@ stages:
     - job: BuildJob
       displayName: Build Job
       steps:
-      - script:  dotnet build --configuration ${{ variables.buildConfiguration }}
+      - script:  dotnet build --configuration ${{ parameters.buildConfiguration }}
