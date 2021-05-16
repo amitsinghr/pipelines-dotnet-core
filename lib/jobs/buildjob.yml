@@ -1,0 +1,7 @@
+jobs:
+  - job: BuildJob
+    displayName: Build Job   
+    variables:
+      - template: ../vars.yml           
+    steps:      
+      - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #${{ parameters.buildConfiguration }}
