@@ -23,18 +23,20 @@ variables:
 
 stages:
   - stage: Build
-    displayName: Build
-    jobs:
-    - job: BuildJob
-      displayName: Build Job
-      steps:
-      - script:  dotnet build --configuration $(buildConfiguration)     
+    # displayName: Build
+  - template: lib/stages/build.yml # Hardcoded Stage Sample
+    # jobs:
+    # - job: BuildJob
+    #   displayName: Build Job
+    #   steps:
+    #   - script:  dotnet build --configuration $(buildConfiguration) 
   - stage: Test
     jobs:
-    - job: TestOnWindows
-      displayName: Test on Windows
-      steps:
-      - script: echo Testing on Windows!
+    - template: lib/jobs/testonwindows.yml # Hardcoded Job Template
+    # - job: TestOnWindows
+    #   displayName: Test on Windows
+    #   steps:
+    #   - script: echo Testing on Windows!    
     - job: TestOnLinux
       displayName: Test on Linux  
       steps:
