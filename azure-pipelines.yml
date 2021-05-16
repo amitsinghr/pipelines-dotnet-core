@@ -3,6 +3,7 @@
 # Build and test ASP.NET Core projects targeting .NET Core.
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+# https://medium.com/microsoftazure/how-to-pass-variables-in-azure-pipelines-yaml-tasks-5c81c5d31763
 
 trigger:
  - master
@@ -15,6 +16,9 @@ variables:
  buildConfiguration: 'Release'
  environment: dev 
  platform: x64
+ componnentName: MyProject
+ buildVersion: 3.2.3
+ buildTag: RC
 
 #steps:
 #- script: dotnet build --configuration $(buildConfiguration)
@@ -23,7 +27,7 @@ variables:
 # This example runs three stages, one after another. The middle stage runs two jobs in parallel. 
  
 
-stages:
+stages:  
   - template: lib/stages/build.yml # Hardcoded Stage Sample
     parameters:
       buildConfiguration: $(buildConfiguration)
@@ -34,9 +38,9 @@ stages:
   #     displayName: Build Job
   #     steps:
   #     - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
-  - stage: Test
+  - stage: Test     
     jobs:
-    - template: lib/jobs/testonwindows.yml # Hardcoded Job Template
+    - template: lib/jobs/testonwindows.yml # Hardcoded Job Template    
     # - job: TestOnWindows
     #   displayName: Test on Windows
     #   steps:
@@ -46,6 +50,7 @@ stages:
       steps:
         - template: lib/tasks/testonlinux-tsk.yml
       # - script: echo Testing on Linux! 
+      dependsOn: Build
   - stage: Deploy
     jobs:
     - job: Approval

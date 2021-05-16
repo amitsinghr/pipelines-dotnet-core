@@ -3,3 +3,4 @@ jobs:
     displayName: Test on Windows
     steps:
      - script: echo Testing on Windows!
+    dependsOn: Build   
