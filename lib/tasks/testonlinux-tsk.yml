@@ -1,0 +1,6 @@
+variables:
+ template: /lib/vars.yml
+
+steps:
+- script: echo Testing on Linux! 
+- script: Build Config $ {{ variables.buildConfiguration }}

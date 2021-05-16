@@ -23,9 +23,9 @@ variables:
 # This example runs three stages, one after another. The middle stage runs two jobs in parallel. 
 
 stages:
-  - template: lib/stages/build.yml # Hardcoded Stage Sample
-    parameters:
-      buildConfiguration: $(buildConfiguration)
+  # - template: lib/stages/build.yml # Hardcoded Stage Sample
+  #   parameters:
+  #     buildConfiguration: $(buildConfiguration)
   # - stage: Build
   #   displayName: Build
   #   jobs:
