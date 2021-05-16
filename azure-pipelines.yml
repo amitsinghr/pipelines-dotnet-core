@@ -57,7 +57,7 @@ stages:
         - task: PublishBuildArtifacts@1
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: 'drop'
+            ArtifactName: 'build_$(environment)'
             publishLocation: 'Container'  
   - stage: Deploy
     jobs:
@@ -73,6 +73,10 @@ stages:
               amitsingh.rajput@atos.net            
             instructions: 'Please validate the build configuration to resume quickly'
             onTimeout: 'resume'
+    - job: downloadArtifact_1
+      displayName: Download Artifact
+      steps:
+        - script: echo download artifact from build_$(environment)
     - deployment: deploytoDev
       displayName: Deploy to Dev
       environment: $(environment)
