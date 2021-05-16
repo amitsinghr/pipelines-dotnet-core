@@ -73,7 +73,8 @@ stages:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: 'drop'
             publishLocation: 'Container'
-    - deployment: Deploy to Dev
+    - deployment: deploytoDev
+      displayName: "Deploy to Dev"
       environment: $(environment)
       dependsOn: Approval
       strategy:
