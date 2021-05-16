@@ -47,7 +47,7 @@ stages:
     #   steps:
     #   - script: echo Testing on Windows!    
     - job: TestOnLinux
-      displayName: Test on Linux $(componentName)
+      displayName: Test on Linux
       steps:
         - template: lib/tasks/testonlinux-tsk.yml
       # - script: echo Testing on Linux! 
