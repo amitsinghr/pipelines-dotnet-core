@@ -1,4 +1,4 @@
-Jobs:
+jobs:
   - job: TestOnWindows
     displayName: Test on Windows
     steps:
