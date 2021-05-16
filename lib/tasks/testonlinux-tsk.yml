@@ -1,5 +1,5 @@
 variables:
- template: /lib/vars.yml
+- template: ../vars.yml
 
 steps:
 - script: echo Testing on Linux! 

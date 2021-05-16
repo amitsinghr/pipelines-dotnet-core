@@ -11,10 +11,10 @@ trigger:
 # vmImage: ubuntu-latest
 
 variables:
-  # template: lib/vars.yml
- buildConfiguration: 'Release'
- environment: dev 
- platform: x64
+- template: lib/vars.yml
+#  buildConfiguration: 'Release'
+#  environment: dev 
+#  platform: x64
 
 #steps:
 #- script: dotnet build --configuration $(buildConfiguration)
@@ -26,13 +26,13 @@ stages:
   # - template: lib/stages/build.yml # Hardcoded Stage Sample
   #   parameters:
   #     buildConfiguration: $(buildConfiguration)
-  # - stage: Build
-  #   displayName: Build
-  #   jobs:
-  #   - job: BuildJob
-  #     displayName: Build Job
-  #     steps:
-  #     - script:  #dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
+  - stage: Build
+    displayName: Build
+    jobs:
+    - job: BuildJob
+      displayName: Build Job
+      steps:
+      - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
   - stage: Test
     jobs:
     - template: lib/jobs/testonwindows.yml # Hardcoded Job Template
