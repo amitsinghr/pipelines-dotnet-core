@@ -10,8 +10,9 @@ stages:
     displayName: Build
     jobs:
     - job: BuildJob
-    - variables:
-      - template: ../vars.yml        
       displayName: Build Job
+      variables:
+      - template: ../vars.yml        
       steps:
       - script:  dotnet build --configuration {{ variables.buildConfiguration }} #${{ parameters.buildConfiguration }}
+      
