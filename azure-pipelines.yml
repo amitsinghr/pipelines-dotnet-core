@@ -23,19 +23,19 @@ variables:
 # This example runs three stages, one after another. The middle stage runs two jobs in parallel. 
 
 stages:
-  - template: lib/stages/build.yml # Hardcoded Stage Sample
-  # - stage: Build
-    # displayName: Build
-    # jobs:
-    # - job: BuildJob
-    #   displayName: Build Job
-    #   steps:
-    #   - script:  dotnet build --configuration $(buildConfiguration) 
+  #- template: lib/stages/build.yml # Hardcoded Stage Sample
+  - stage: Build
+    displayName: Build
+    jobs:
+    - job: BuildJob
+      displayName: Build Job
+      steps:
+      - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
   - stage: Test
     jobs:
     - template: lib/jobs/testonwindows.yml # Hardcoded Job Template
       parameters:
-        buildConfiguration: 'Release' #${{ variables.buildConfiguration }}
+        buildConfiguration: ${{ variables.buildConfiguration }}
     # - job: TestOnWindows
     #   displayName: Test on Windows
     #   steps:
@@ -43,7 +43,7 @@ stages:
     - job: TestOnLinux
       displayName: Test on Linux  
       steps:
-      - script: echo Testing on Linux! ${{ variables.buildConfiguration }}
+      - script: echo Testing on Linux! 
   - stage: Deploy
     jobs:
     - job: Approval
