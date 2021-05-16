@@ -74,7 +74,7 @@ stages:
             ArtifactName: 'drop'
             publishLocation: 'Container'
     - deployment: deploytoDev
-      displayName: "Deploy to Dev"
+      displayName: Deploy to Dev
       environment: $(environment)
       dependsOn: Approval
       strategy:
