@@ -1,4 +1,2 @@
 steps:
-variables: 
-- template: ../vars.yml
-- script: echo Testing on Linux! ${{ variables.buildConfiguration }}
+  - script: echo Testing on Linux! ${{ variables.buildConfiguration }}

@@ -55,11 +55,11 @@ stages:
     - job: Publish
       displayName: Publish Artifact
       steps:
-        - task: PublishBuildArtifacts@1
-          inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: 'build_$(environment)'
-            publishLocation: 'Container'  
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'build_$(environment)'
+          publishLocation: 'Container'  
   - stage: Deploy
     jobs:
     - job: Approval
