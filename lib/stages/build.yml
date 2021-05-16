@@ -1,9 +1,9 @@
 # Build Stage
 stages:
-  - stage: Build
+  - stage: BuildJob
     displayName: Build
     jobs:
     - job: BuildJob
       displayName: Build Job
       steps:
-      - script:  dotnet build --configuration $(buildConfiguration)
+      - script:  echo 'dotnet build --configuration $(buildConfiguration)'
