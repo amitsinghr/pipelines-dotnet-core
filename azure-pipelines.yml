@@ -11,10 +11,10 @@ trigger:
 # vmImage: ubuntu-latest
 
 variables:
-  template: lib/vars.yml
-#  buildConfiguration: 'Release'
-#  environment: dev 
-#  platform: x64
+  # template: lib/vars.yml
+ buildConfiguration: 'Release'
+ environment: dev 
+ platform: x64
 
 #steps:
 #- script: dotnet build --configuration $(buildConfiguration)
@@ -23,16 +23,16 @@ variables:
 # This example runs three stages, one after another. The middle stage runs two jobs in parallel. 
 
 stages:
-  # - template: lib/stages/build.yml # Hardcoded Stage Sample
-  #   parameters:
-  #     buildConfiguration: ${{ variables.buildConfiguration }}
-  - stage: Build
-    displayName: Build
-    jobs:
-    - job: BuildJob
-      displayName: Build Job
-      steps:
-      - script: echo ${{ variables.buildConfiguration }} #dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
+  - template: lib/stages/build.yml # Hardcoded Stage Sample
+    parameters:
+      buildConfiguration: $(buildConfiguration)
+  # - stage: Build
+  #   displayName: Build
+  #   jobs:
+  #   - job: BuildJob
+  #     displayName: Build Job
+  #     steps:
+  #     - script:  #dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
   - stage: Test
     jobs:
     - template: lib/jobs/testonwindows.yml # Hardcoded Job Template
