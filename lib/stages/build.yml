@@ -14,5 +14,4 @@ stages:
       variables:
       - template: ../vars.yml        
       steps:
-      - script:  dotnet build --configuration {{ variables.buildConfiguration }} #${{ parameters.buildConfiguration }}
-      
+      - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #${{ parameters.buildConfiguration }}
