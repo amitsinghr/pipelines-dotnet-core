@@ -11,7 +11,7 @@ stages:
     # variables:
     #   - template: ../vars.yml
     jobs:
-    template: ../jobs/buildjob.yml
+      - template: ../jobs/buildjob.yml
     # - job: BuildJob
     #   displayName: Build Job   
     #   variables:
