@@ -30,7 +30,9 @@ stages:
     - job: BuildJob
       displayName: Build Job
       steps:
-      - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
+      - script: buildConfiguration ${{ variables.buildConfiguration }}.
+      - script: exit -1
+      #- script:  dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
   - stage: Test
     jobs:
     - template: lib/jobs/testonwindows.yml # Hardcoded Job Template
