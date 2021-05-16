@@ -1,6 +1,6 @@
 variables:
-  template: /lib/vars.yml
-  
+  template: ./vars.yml
+
 # Build Stage
 stages:
   - stage: BuildJob
@@ -9,4 +9,4 @@ stages:
     - job: BuildJob
       displayName: Build Job
       steps:
-      - script:  echo 'dotnet build --configuration $(buildConfiguration)'
+      - script:  echo dotnet build --configuration ${{ variables.buildConfiguration }}
