@@ -43,7 +43,7 @@ stages:
     - job: TestOnLinux
       displayName: Test on Linux  
       steps:
-      - script: echo Testing on Linux!
+      - script: echo Testing on Linux! ${{ variables.buildConfiguration }}
   - stage: Deploy
     jobs:
     - job: Approval
