@@ -1,6 +1,5 @@
-# Test Jobs 
 Jobs:
   - job: TestOnWindows
     displayName: Test on Windows
     steps:
-      - script: echo Testing on Windows!
+     - script: echo Testing on Windows!
