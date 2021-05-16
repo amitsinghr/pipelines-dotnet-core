@@ -1,0 +1,4 @@
+variables:
+  buildConfiguration: 'Release'
+  environment: dev 
+  platform: x64

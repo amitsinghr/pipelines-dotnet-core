@@ -1,3 +1,6 @@
+variables:
+  template: /lib/vars.yml
+  
 # Build Stage
 stages:
   - stage: BuildJob
