@@ -19,6 +19,7 @@ variables:
  componnentName: MyProject
  buildVersion: 3.2.3
  buildTag: RC
+ notifyUser: amitsingh.rajput@atos.net
 
 #steps:
 #- script: dotnet build --configuration $(buildConfiguration)
@@ -70,7 +71,7 @@ stages:
           timeoutInMinutes: 1 # task times out in 1 day
           inputs:
             notifyUsers: |
-              amitsingh.rajput@atos.net            
+              $(notifyUser)
             instructions: 'Please validate the build configuration to resume quickly'
             onTimeout: 'resume'
     - job: downloadArtifact_1
