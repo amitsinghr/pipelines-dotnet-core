@@ -122,36 +122,36 @@ variables:
   #     - script: echo hello from the Release build
   
   # Example jobs that build in parallel (no dependencies):
-jobs:
-  - job: Windows
-    pool:
-      vmImage: 'vs2017-win2016'
-    steps:
-    - script: echo hello from Windows
-  - job: macOS
-    pool:
-      vmImage: 'macOS-10.14'
-    steps:
-    - script: echo hello from macOS
-  - job: Linux
-    pool:
-      vmImage: 'ubuntu-16.04'
-    steps:
-    - script: echo hello from Linux  
+# jobs:
+#   - job: Windows
+#     pool:
+#       vmImage: 'vs2017-win2016'
+#     steps:
+#     - script: echo hello from Windows
+#   - job: macOS
+#     pool:
+#       vmImage: 'macOS-10.14'
+#     steps:
+#     - script: echo hello from macOS
+#   - job: Linux
+#     pool:
+#       vmImage: 'ubuntu-16.04'
+#     steps:
+#     - script: echo hello from Linux  
   
   # Example of fan-out:
-  # jobs:
-  #   - job: InitialJob
-  #     steps:
-  #     - script: echo hello from initial job
-  #   - job: SubsequentA
-  #     dependsOn: InitialJob
-  #     steps:
-  #     - script: echo hello from subsequent A
-  #   - job: SubsequentB
-  #     dependsOn: InitialJob
-  #     steps:
-  #     - script: echo hello from subsequent B
+jobs:
+  - job: InitialJob
+    steps:
+    - script: echo hello from initial job
+  - job: SubsequentA
+    dependsOn: InitialJob
+    steps:
+    - script: echo hello from subsequent A
+  - job: SubsequentB
+    dependsOn: InitialJob
+    steps:
+    - script: echo hello from subsequent B
   
   # Example of fan-in:
   # jobs:
