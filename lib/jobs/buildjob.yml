@@ -5,4 +5,4 @@ jobs:
       - template: ../vars.yml           
     steps:      
       - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #${{ parameters.buildConfiguration }}
-      - script: echo value of foo is- ${{foo}}
+      - script: echo value of foo is- ${{foo}} 
