@@ -28,70 +28,70 @@ variables:
 # This example runs three stages, one after another. The middle stage runs two jobs in parallel. 
  
 
-# stages:  
-#   - template: lib/stages/build.yml # Hardcoded Stage Sample
-#     parameters:
-#       buildConfiguration: $(buildConfiguration)
-#   # - stage: Build
-#   #   displayName: Build
-#   #   jobs:
-#   #   - job: BuildJob
-#   #     displayName: Build Job
-#   #     steps:
-#   #     - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
-#   - stage: Test     
-#     jobs:
-#     # - template: lib/jobs/testonwindows.yml # Hardcoded Job Template    
-#     - job: TestOnWindows
-#       displayName: Test on Windows
-#       steps:
-#       - script: echo Testing on Windows!    
-#     - job: TestOnLinux
-#       displayName: Test on Linux
-#       steps:
-#         - template: lib/tasks/testonlinux-tsk.yml
-#       # - script: echo Testing on Linux! 
-#       # dependsOn: Build
-#     - job: Publish
-#       displayName: Publish Artifact
-#       steps:
-#       - task: PublishBuildArtifacts@1
-#         inputs:
-#           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#           ArtifactName: 'build_$(environment)'
-#           publishLocation: 'Container'  
-#   - stage: Deploy
-#     jobs:
-#     - job: Approval
-#       displayName: Waiting for Approval
-#       pool: server
-#       steps:
-#         - task: ManualValidation@0
-#           displayName: Waiting for Approval          
-#           timeoutInMinutes: 1 # task times out in 1 day
-#           inputs:
-#             notifyUsers: |
-#               $(notifyUser)
-#             instructions: 'Please validate the build configuration to resume quickly'
-#             onTimeout: 'resume'
-#     - job: downloadArtifact_1
-#       displayName: Download Artifact
-#       steps:
-#         - script: echo download artifact from build_$(environment)
-#     - deployment: deploytoDev
-#       displayName: Deploy to Dev
-#       environment: $(environment)
-#       dependsOn: Approval
-#       strategy:
-#         runOnce:
-#           deploy:
-#             steps:
-#             - script: echo Hello world        
-#     # - job: DeploytoDev
-#     #   displayName: Dev Deployment
-#     #   steps:
-#     #     - script: echo Deploying the code from $(Build.ArtifactStagingDirectory)!
-#     #   dependsOn: Approval 
+stages:  
+  - template: lib/stages/build.yml # Hardcoded Stage Sample
+    parameters:
+      buildConfiguration: $(buildConfiguration)
+  # - stage: Build
+  #   displayName: Build
+  #   jobs:
+  #   - job: BuildJob
+  #     displayName: Build Job
+  #     steps:
+  #     - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
+  - stage: Test     
+    jobs:
+    # - template: lib/jobs/testonwindows.yml # Hardcoded Job Template    
+    - job: TestOnWindows
+      displayName: Test on Windows
+      steps:
+      - script: echo Testing on Windows!    
+    - job: TestOnLinux
+      displayName: Test on Linux
+      steps:
+        - template: lib/tasks/testonlinux-tsk.yml
+      # - script: echo Testing on Linux! 
+      # dependsOn: Build
+    - job: Publish
+      displayName: Publish Artifact
+      steps:
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'build_$(environment)'
+          publishLocation: 'Container'  
+  - stage: Deploy
+    jobs:
+    - job: Approval
+      displayName: Waiting for Approval
+      pool: server
+      steps:
+        - task: ManualValidation@0
+          displayName: Waiting for Approval          
+          timeoutInMinutes: 1 # task times out in 1 day
+          inputs:
+            notifyUsers: |
+              $(notifyUser)
+            instructions: 'Please validate the build configuration to resume quickly'
+            onTimeout: 'resume'
+    - job: downloadArtifact_1
+      displayName: Download Artifact
+      steps:
+        - script: echo download artifact from build_$(environment)
+    - deployment: deploytoDev
+      displayName: Deploy to Dev
+      environment: $(environment)
+      dependsOn: Approval
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - script: echo Hello world        
+    # - job: DeploytoDev
+    #   displayName: Dev Deployment
+    #   steps:
+    #     - script: echo Deploying the code from $(Build.ArtifactStagingDirectory)!
+    #   dependsOn: Approval 
     
     
   # This example runs two stages in parallel. For brevity, the jobs and steps are omitted.
