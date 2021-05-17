@@ -140,33 +140,33 @@ variables:
 #     - script: echo hello from Linux  
   
   # Example of fan-out:
-jobs:
-  - job: InitialJob
-    steps:
-    - script: echo hello from initial job
-  - job: SubsequentA
-    dependsOn: InitialJob
-    steps:
-    - script: echo hello from subsequent A
-  - job: SubsequentB
-    dependsOn: InitialJob
-    steps:
-    - script: echo hello from subsequent B
+# jobs:
+#   - job: InitialJob
+#     steps:
+#     - script: echo hello from initial job
+#   - job: SubsequentA
+#     dependsOn: InitialJob
+#     steps:
+#     - script: echo hello from subsequent A
+#   - job: SubsequentB
+#     dependsOn: InitialJob
+#     steps:
+#     - script: echo hello from subsequent B
   
   # Example of fan-in:
-  # jobs:
-  #   - job: InitialA
-  #     steps:
-  #     - script: echo hello from initial A
-  #   - job: InitialB
-  #     steps:
-  #     - script: echo hello from initial B
-  #   - job: Subsequent
-  #     dependsOn:
-  #     - InitialA
-  #     - InitialB
-  #     steps:
-  #     - script: echo hello from subsequent
+jobs:
+  - job: InitialA
+    steps:
+    - script: echo hello from initial A
+  - job: InitialB
+    steps:
+    - script: echo hello from initial B
+  - job: Subsequent
+    dependsOn:
+    - InitialA
+    - InitialB
+    steps:
+    - script: echo hello from subsequent
   
   
   #############CONDITIONS
