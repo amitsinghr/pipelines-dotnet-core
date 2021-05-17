@@ -95,19 +95,20 @@ variables:
     
     
   # This example runs two stages in parallel. For brevity, the jobs and steps are omitted.
-stages:
-  - stage: BuildWin
-    displayName: Build for Windows
-    jobs:
-    - job: BuildJobWindows
-      steps:
-      - script: echo Building for Windows!
-  - stage: BuildMac
-    displayName: Build for Mac
-    jobs:
-      - job: BuildJobMac
-        steps:
-        - script: echo Building for Mac!
+# stages:
+#   - stage: BuildWin
+#     displayName: Build for Windows
+#     jobs:
+#     - job: BuildJobWindows
+#       steps:
+#       - script: echo Building for Windows!
+#   - stage: BuildMac
+#     displayName: Build for Mac
+#     jobs:
+#       - job: BuildJobMac
+#         steps:
+#         - script: echo Building for Mac!
+       
   #    dependsOn: [] # by specifying an empty array, this stage doesn't depend on the stage before it
   
   #Example jobs that build sequentially:
@@ -121,22 +122,22 @@ stages:
   #     - script: echo hello from the Release build
   
   # Example jobs that build in parallel (no dependencies):
-  # jobs:
-  #   - job: Windows
-  #     pool:
-  #       vmImage: 'vs2017-win2016'
-  #     steps:
-  #     - script: echo hello from Windows
-  #   - job: macOS
-  #     pool:
-  #       vmImage: 'macOS-10.14'
-  #     steps:
-  #     - script: echo hello from macOS
-  #   - job: Linux
-  #     pool:
-  #       vmImage: 'ubuntu-16.04'
-  #     steps:
-  #     - script: echo hello from Linux  
+jobs:
+  - job: Windows
+    pool:
+      vmImage: 'vs2017-win2016'
+    steps:
+    - script: echo hello from Windows
+  - job: macOS
+    pool:
+      vmImage: 'macOS-10.14'
+    steps:
+    - script: echo hello from macOS
+  - job: Linux
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+    - script: echo hello from Linux  
   
   # Example of fan-out:
   # jobs:
