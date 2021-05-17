@@ -41,11 +41,11 @@ stages:
   #     - script:  dotnet build --configuration ${{ variables.buildConfiguration }} #$(buildConfiguration) 
   - stage: Test     
     jobs:
-    - template: lib/jobs/testonwindows.yml # Hardcoded Job Template    
-    # - job: TestOnWindows
-    #   displayName: Test on Windows
-    #   steps:
-    #   - script: echo Testing on Windows!    
+    # - template: lib/jobs/testonwindows.yml # Hardcoded Job Template    
+    - job: TestOnWindows
+      displayName: Test on Windows
+      steps:
+      - script: echo Testing on Windows!    
     - job: TestOnLinux
       displayName: Test on Linux
       steps:
